@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 import graficas
 import sys
 import teorema_int_cauchy as tic
@@ -34,11 +34,14 @@ except EOFError:
     sys.exit(0)
 # Fin validación entradas
 
+# Verifica si cumple el Teorema de Integracion de Cauchy
 cumple_teorema = tic.verificar_tic(z0, radio)
 
 if cumple_teorema:
     if num_fun == 4:
         resultado = tic.calc_int_cauchy(num_fun, z0, indice)
+    else:
+        resultado = tic.calc_int_cauchy(num_fun,z0)
 else:
     resultado = 0
 
@@ -50,5 +53,8 @@ else:
     z_str += "+%.2f" % resultado.imag
 z_str += "j"
 
-ti = "Integral de " + funciones[num_fun] + "/ (z - " + str(z0) + ") = " + z_str
+# Organiza la cadena para el título de gráfica
+if num_fun == 4:
+    funciones[num_fun] = "z^" + str(indice)
+ti = "Integral de\n" + funciones[num_fun] + "/ (z - " + str(z0) + ") = " + z_str
 graficas.graficar_region(z0, radio, titulo = ti)
