@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import graficas
 import sys
 import teorema_int_cauchy as tic
@@ -59,12 +59,12 @@ if resultado != "???":
 else:
     z_str = resultado
 
-# Organiza la cadena para el título de gráfica
+# Organiza la cadena para el título de gráfica con formato matemático
 if num_fun == 3:
-    ti = r'$\oint_\gamma    (\frac{e^z}{z - %s})dz = %s$' % (z0, z_str)
+    ti = r'$\oint_\gamma \left( \frac{e^z}{z - %s}\right) dz = %s$' % (z0, z_str)
 elif num_fun == 4:
-    ti = r'$\oint_\gamma    (\frac{z^{%d}}{z - %s})dz = %s$' % (indice, z0, z_str)
+    ti = r'$\oint_\gamma \left( \frac{z^{%d}}{z - %s}\right) dz = %s$' % (indice, z0, z_str)
 else:
-    ti = r'$\oint_\gamma    (\frac{%s}{z - %s})dz = %s$' % (funciones[num_fun], z0, z_str)
+    ti = r'$\oint_\gamma \left( \frac{%s}{z - %s}\right) dz = %s$' % (funciones[num_fun], z0, z_str)
 
 graficas.graficar_region(z0, radio, titulo = ti)
