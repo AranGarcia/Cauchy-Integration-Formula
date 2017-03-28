@@ -18,9 +18,9 @@ def graficar_region(z, r, h = (0,0), titulo = None):
         z_str += "+%.2f" % z.imag
     z_str += "j"
         
-    plt.plot(z.real, z.imag, label = "z0 = " + z_str, marker = "o")
+    plt.plot(z.real, z.imag, label = "$z_0$ = " + z_str, marker = "o")
     
-    circle = plt.Circle((0, 0), color = "r",radius = r, alpha = .5, label = "gama(t)")
+    circle = plt.Circle((0, 0), color = "r",radius = r, alpha = .5, label = "$\gamma$(t), [0,2$\pi$]")
     plt.gca().add_patch(circle)
 
     plt.axis('equal')

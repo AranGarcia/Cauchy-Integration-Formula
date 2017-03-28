@@ -19,6 +19,9 @@ def verificar_tic(z0, radio, centro = (0,0)):
     """
     d = distancia_compleja(z0, 0)
     
+    if d == radio:
+        return None
+    
     return d < radio
 # Fin función verificar_tic
 

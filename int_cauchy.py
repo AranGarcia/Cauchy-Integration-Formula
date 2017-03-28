@@ -37,7 +37,10 @@ except EOFError:
 # Verifica si cumple el Teorema de Integracion de Cauchy
 cumple_teorema = tic.verificar_tic(z0, radio)
 
-if cumple_teorema:
+if cumple_teorema == None:
+    resultado = "???"
+
+elif cumple_teorema:
     if num_fun == 4:
         resultado = tic.calc_int_cauchy(num_fun, z0, indice)
     else:
@@ -46,15 +49,22 @@ else:
     resultado = 0
 
 # Convierte numero complejo a cadena con signo adecuado
-z_str = "%.2f" % resultado.real
-if resultado.imag < 0:
-    z_str += "%.2f" % resultado.imag
+if resultado != "???":
+    z_str = "%.2f" % resultado.real
+    if resultado.imag < 0:
+        z_str += "%.2f" % resultado.imag
+    else:
+        z_str += "+%.2f" % resultado.imag
+    z_str += "j"
 else:
-    z_str += "+%.2f" % resultado.imag
-z_str += "j"
+    z_str = resultado
 
 # Organiza la cadena para el título de gráfica
-if num_fun == 4:
-    funciones[num_fun] = "z^" + str(indice)
-ti = "Integral de\n" + funciones[num_fun] + "/ (z - " + str(z0) + ") = " + z_str
+if num_fun == 3:
+    ti = r'$\oint_\gamma    (\frac{e^z}{z - %s})dz = %s$' % (z0, z_str)
+elif num_fun == 4:
+    ti = r'$\oint_\gamma    (\frac{z^{%d}}{z - %s})dz = %s$' % (indice, z0, z_str)
+else:
+    ti = r'$\oint_\gamma    (\frac{%s}{z - %s})dz = %s$' % (funciones[num_fun], z0, z_str)
+
 graficas.graficar_region(z0, radio, titulo = ti)
